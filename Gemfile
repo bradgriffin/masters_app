@@ -8,7 +8,6 @@ gem 'rails', '3.2.1'
 gem 'pg'
 gem 'heroku'
 
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -37,6 +36,14 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+group :development, :test do
+  gem 'rspec-rails', '2.8.1'
+end
+
+group :test do
+  gem 'capybara', '1.1.2'
+end
 
 group :production do
   gem 'thin'
