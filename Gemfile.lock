@@ -59,6 +59,9 @@ GEM
       thor (~> 0.14.6)
     guard-rspec (0.5.5)
       guard (>= 0.8.4)
+    guard-spork (0.3.2)
+      guard (>= 0.8.4)
+      spork (>= 0.8.4)
     heroku (2.20.0)
       launchy (>= 0.3.2)
       rest-client (~> 1.6.1)
@@ -136,6 +139,7 @@ GEM
       ffi (~> 1.0.9)
       multi_json (~> 1.0.4)
       rubyzip
+    spork (0.9.0)
     sprockets (2.1.2)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -164,6 +168,7 @@ DEPENDENCIES
   capybara (= 1.1.2)
   coffee-rails (~> 3.2.1)
   guard-rspec (= 0.5.5)
+  guard-spork (= 0.3.2)
   heroku
   jquery-rails
   libnotify (= 0.5.9)
@@ -172,5 +177,6 @@ DEPENDENCIES
   rb-inotify (= 0.8.8)
   rspec-rails (= 2.8.1)
   sass-rails (~> 3.2.3)
+  spork (= 0.9.0)
   thin
   uglifier (>= 1.0.3)
