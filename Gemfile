@@ -39,10 +39,14 @@ gem 'jquery-rails'
 
 group :development, :test do
   gem 'rspec-rails', '2.8.1'
+  gem 'guard-rspec', '0.5.5'
 end
 
 group :test do
+  gem 'rspec-rails', '2.8.1'
   gem 'capybara', '1.1.2'
+  gem 'rb-inotify', '0.8.8'
+  gem 'libnotify', '0.5.9'
 end
 
 group :production do
