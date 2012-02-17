@@ -1,0 +1,16 @@
+<header id="header" class="green-gradient"> 
+  <div>
+  <div class="logo">
+     <h1>
+        <% logo = image_tag("masters_logo.jpg", alt: "Masters Challenge", :mouseover => "masters_logo_hover.jpg") %>
+        <%= link_to logo, root_path %>
+     </h1>
+  </div>
+  <nav>
+    <ul>
+      <li><%= link_to "Home", root_path %></li>
+      <li><%= link_to "Help", help_path %></li>
+      <li><%= link_to "Sign in", '#' %></li>
+    </ul>
+  </nav>
+</header>
