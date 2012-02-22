@@ -5,3 +5,7 @@
 	</p>
 
 	<%= link_to "Sign up now!", new_user_registration_path, class: "signup_button round" %>
+	
+	<% @users.each do |user| %>
+  	<p>User: <%=link_to user.name, user %></p>
+	<% end %>
