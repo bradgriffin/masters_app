@@ -1,4 +1,6 @@
 MastersApp::Application.routes.draw do
+  get "golfers/show"
+
   devise_for :users 
   resources :users, :only => :show
 
