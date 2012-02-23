@@ -1,13 +1,17 @@
 MastersApp::Application.routes.draw do
-  get "golfers/show"
+  
 
+  devise_for :admins
   devise_for :users 
   resources :users, :only => :show
+  resources :golfers, :only => :show
 
   root to: 'static_pages#home'
   match '/help', to: 'static_pages#help'
   match '/about', to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
+
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
 
   # The priority is based upon order of creation:
