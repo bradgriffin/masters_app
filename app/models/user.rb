@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-	has_many :selections
-	has_many :golfers, :through => :selections
+	has_many :selections, :class_name => 'Selection'
+	has_many :golfers, :through => :selections, :class_name => 'Selection'
 		
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable

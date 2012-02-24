@@ -1,4 +1,3 @@
-<% provide :title, 'Add Golfer' %>
 <h1>Add Golfer</h1>
 
 <%= form_for(@golfer) do |f| %>
@@ -11,6 +10,11 @@
   <div class="field">
   <%= f.label :status %><br />
   <%= f.text_field :status %>
+  </div>
+
+  <div class="field">
+  <%= f.label :group %><br />
+  <%= f.text_field :group %>
   </div>
 
   <div class="actions">

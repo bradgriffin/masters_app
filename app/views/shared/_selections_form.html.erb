@@ -1,0 +1,21 @@
+<%= form_for(@selection) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div class="field">
+  <%= f.label :golfer_id %><br />
+  <%= f.text_field :golfer_id %>
+  </div>
+  
+  <div class="field">
+  <%= f.label :user_id %><br />
+  <%= f.text_field :user_id %>
+  </div>
+
+  <div class="radio">
+    <%= f.radio_button(:golfer_id, "2") %>
+    <%= f.label :golfer_id, "Aaron" %>
+
+  <div class="actions">
+    <%= f.submit "Submit" %>
+  </div>
+<% end %>

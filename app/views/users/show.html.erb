@@ -13,3 +13,16 @@
     </td>
   </tr>
 </table>
+
+<% if signed_in? %>
+  <table class="front">
+    <tr>
+      <td class="main">
+        <h1 class="selection">Make your picks:</h1>
+        <%= render 'shared/selections_form' %>
+      </td>
+    </tr>
+  </table>
+<% else %>
+  <h1>Sample App</h1>
+<% end %>

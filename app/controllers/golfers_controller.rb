@@ -6,13 +6,16 @@ class GolfersController < ApplicationController
   def create
   	@golfer = Golfer.new(params[:golfer])
   	if @golfer.save
-  		redirect_to root_path
-  	else
-  	render 'new'
-  end
+  		flash[:success] = "Golfer Created"
+      redirect_to new_golfer_path
+    else
+      flash[:error] = "You suck"
+      redirect_to new_golfer_path
+    end
   end
 
   def show
+    @title = "Add Golfer"
   	@golfers = Golfer.all
   end
 end
