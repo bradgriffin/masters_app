@@ -10,6 +10,8 @@ MastersApp::Application.routes.draw do
   match '/help', to: 'static_pages#help'
   match '/about', to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
+  match '/standings', to: 'static_pages#standings'
+  match '/rankings', to: 'static_pages#rankings'
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 

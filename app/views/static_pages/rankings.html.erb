@@ -1,0 +1,8 @@
+<h1>User Rankings</h1>
+<p>
+	Where do you stack up against the world?
+</p>
+	
+<% @users.each do |user| %>
+<p>User: <%=link_to user.name, user %></p>
+<% end %>

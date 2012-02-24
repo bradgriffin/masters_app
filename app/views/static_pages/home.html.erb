@@ -1,11 +1,7 @@
-<% provide(:title, 'Home') %>
-	<h1>Masters Challenge</h1>
-	<p>
-  		This is the home page for the Masters Challenge application.
-	</p>
+<h1>How it Works</h1>
 
-	<%= link_to "Sign up now!", new_user_registration_path, class: "signup_button round" %>
-	
-	<% @users.each do |user| %>
-  	<p>User: <%=link_to user.name, user %></p>
-	<% end %>
+<p>The Masters Challenge is an online, fantasy style game in which end-users select a total of 8 golfers from the Masters Tournament Field to compete against their friends and the world to show who knows the most about golf.</p> To make things interesting, we have divided the field into 7 smaller groups in which you must choose 1 golfer from each group. Your eigth and final golfer is chosen from the remainder of the field. The person who's team shoots the lowest score wins. Each individual will also be asked to guess the overall winning score for the Masters to be used in the event of a tie.</p>
+
+<p>Note: A golfer missing the cut will be given a score equal to that of the golfer that finishes worst off after 4 rounds, plus 2 additional strokes.</p>
+
+<%= link_to "Sign up now!", new_user_registration_path, class: "signup_button round" %>

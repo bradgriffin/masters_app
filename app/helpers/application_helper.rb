@@ -1,12 +1,12 @@
 module ApplicationHelper
 
-  # Returns the full title on a per-page basis.
-  def full_title(page_title)
-    base_title = "Masters Challenge"
-    if page_title.empty?
-      base_title
-    else
-      "#{base_title} | #{page_title}"
-    end
-  end
+  # Return a title on a per-page basis.
+  	def title
+   	 base_title = "Masters Challenge"
+    	if @title.nil?
+      		base_title
+    	else
+      	"#{base_title} | #{@title}"
+    	end
+  	end
 end
