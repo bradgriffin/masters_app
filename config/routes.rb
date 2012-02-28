@@ -1,11 +1,9 @@
 MastersApp::Application.routes.draw do
   
-
-  devise_for :admins
   devise_for :users 
   resources :users, :only => :show
-  resources :golfers, :only => [:new, :create]
-  resources :selections, :only => [:create, :destroy]
+  resources :golfers, :only => [:new, :create, :show]
+  resources :selections, :only => [:show, :create, :destroy]
 
   root to: 'static_pages#home'
   match '/help', to: 'static_pages#help'
@@ -13,8 +11,6 @@ MastersApp::Application.routes.draw do
   match '/contact', to: 'static_pages#contact'
   match '/standings', to: 'static_pages#standings'
   match '/rankings', to: 'static_pages#rankings'
-
-  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
 
   # The priority is based upon order of creation:

@@ -1,15 +1,20 @@
 <%= form_for(@selection) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  
-  <div class="radio">
-    <%= f.radio_button(:golfer_id, "1") %>
-    <%= f.label :golfer_id, "Aaron Baddely" %>
-
-    <div class="radio">
-    <%= f.radio_button(:golfer_id, "2") %>
-    <%= f.label :golfer_id, "Sung-moon Bae" %>
+  <h4>Group 1 Selection:</h4>
+    <div class="select" >
+      <%= f.collection_select :golfer_id,  Golfer.where(:group_id => "1"), :id, :name, :prompt => true %>
+      <%= f.hidden_field :group_id, value: "1" %>  
+    </div>  
+    <p></p>
+  <h4>Group 2 Selection:</h4>
+    <div class="select" >
+      <%= f.collection_select :golfer_id,  Golfer.where(:group_id => "2"), :id, :name, :prompt => true %>
+      <%= f.hidden_field :group_id, value: "2" %>  
+    </div>
+    <p></p>
 
   <div class="actions">
     <%= f.submit "Submit" %>
   </div>
+
 <% end %>

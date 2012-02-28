@@ -15,6 +15,11 @@
 </table>
 
 <% if signed_in? %>
+<% unless @user.selections.empty? %>
+        <table class="selections" summary="User selections">
+          <%= @selections %>
+        </table>
+      <% end %>
   <table class="front">
     <tr>
       <td class="main">
