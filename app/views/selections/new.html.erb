@@ -1,11 +1,12 @@
+<h1>Make your Selections</h1>
+
 <%= form_tag selections_path, :method => :create do %>
-  <%= render 'shared/selection_error_messages' %>
   <ul>
     <% for golfer in @group_1 %>
       <li>
-        <%= check_box_tag "golfer_id", golfer.id %>
-        <%= hidden_field_tag "user_id", @user.id %>
-        <%= hidden_field_tag "group_id", "1" %>
+        <%= check_box_tag "selections[golfer_id]", golfer.id %>
+        <%= hidden_field_tag "selections[user_id]", current_user.id %>
+        <%= hidden_field_tag "selections[group_id]", "1" %>
         <%= golfer.name %>
       </li>
     <% end %>
@@ -16,4 +17,3 @@
   </div>
 
 <% end %>
-

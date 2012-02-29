@@ -3,7 +3,7 @@ MastersApp::Application.routes.draw do
   devise_for :users 
   resources :users, :only => :show
   resources :golfers, :only => [:new, :create, :show]
-  resources :selections, :only => [:show, :create, :destroy]
+  resources :selections
 
   root to: 'static_pages#home'
   match '/help', to: 'static_pages#help'

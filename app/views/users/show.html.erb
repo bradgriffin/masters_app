@@ -16,15 +16,19 @@
 
 <% if signed_in? %>
 <% unless @user.selections.empty? %>
-        <table class="selections" summary="User selections">
-          <%= @selections %>
-        </table>
-      <% end %>
+          <ul>
+          <% for selection in @selections %>
+            <li>
+              <%= selection.golfer_id %>
+            </li>
+         <% end %>
+       </ul>
+<% end %>
   <table class="front">
     <tr>
       <td class="main">
-        <h1 class="selection">Make your picks:</h1>
-        <%= render 'shared/selections_form' %>
+        <h1 class="selection">
+          <%= link_to "Make your Picks", new_selection_path %>
       </td>
     </tr>
   </table>

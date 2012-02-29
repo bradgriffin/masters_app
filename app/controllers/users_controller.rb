@@ -9,7 +9,6 @@ class UsersController < ApplicationController
   	@user = User.find(params[:id])
   	@title = @user.name
     @selections = @user.selections.find(:all)
-    @selection = Selection.new
     8.times do
       @selection = @user.selections.build(params[:selection])
     end
