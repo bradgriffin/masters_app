@@ -12,7 +12,9 @@ class SelectionsController < ApplicationController
   end 
 
   def create
-    @selection = current_user.selections.build(params[:selections])
+    @selection = params[:selections].collect do |selection| 
+      current_user.selections.build(selection) 
+    end
     if @selection.save
       flash[:success] = "Selection made!"
       redirect_to current_user

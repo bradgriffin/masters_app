@@ -15,15 +15,13 @@
 </table>
 
 <% if signed_in? %>
-<% unless @user.selections.empty? %>
-          <ul>
-          <% for selection in @selections %>
-            <li>
-              <%= selection.golfer_id %>
-            </li>
-         <% end %>
-       </ul>
-<% end %>
+  <ul>
+    <% for selection in @selections %>
+    <li>
+      <%= selection.id %>
+    </li>
+    <% end %>
+  </ul>
   <table class="front">
     <tr>
       <td class="main">
@@ -32,6 +30,7 @@
       </td>
     </tr>
   </table>
+
 <% else %>
   <h1>Sample App</h1>
 <% end %>

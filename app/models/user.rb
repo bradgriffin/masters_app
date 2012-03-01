@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 	has_many :selections, :dependent => :destroy
-  has_many :golfers, :through => :selections
+  has_many :golfers, :through => :selections, :source => :User
   accepts_nested_attributes_for :selections
 		
   # Include default devise modules. Others available are:

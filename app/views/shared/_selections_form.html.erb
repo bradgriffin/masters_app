@@ -1,13 +1,97 @@
 <%= form_tag selections_path, :method => :create do %>
-  <ul>
+  <table>
+    <tr>
+      <th>Group 1:</th>
+    </tr>
+    <tr>
+      <th>Selection</th>
+      <th>Name</th>
+    </tr>
     <% for golfer in @group_1 %>
-      <li>
-        <%= check_box_tag "selections[golfer_id][]", golfer.id %>
-        <%= hidden_field_tag "selections[group_id][]", "1" %>
-        <%= golfer.name %>
-      </li>
+      <tr>
+        <td><%= check_box_tag "selections[golfer_id][]", golfer.id %></td>
+        <td><%= golfer.name %></td>
+      </tr> 
     <% end %>
-  </ul>
+    <%= hidden_field_tag "selections[group_id][]", "1" %>
+    
+    <tr>
+    <th>Group 2:</th>
+    </tr>
+    <% for golfer in @group_2 %>
+      <tr>
+        <td><%= check_box_tag "selections[golfer_id][]", golfer.id %></td>
+        <td><%= golfer.name %></td>
+      </tr>
+    <% end %>
+    <%= hidden_field_tag "selections[group_id][]", "2" %>
+  
+    <tr>
+      <th>Group 3:</th>
+    </tr>
+    <% for golfer in @group_3 %>
+      <tr>
+        <td><%= check_box_tag "selections[golfer_id][]", golfer.id %> </td>
+        <td><%= golfer.name %></td>
+      </tr>
+    <% end %>
+    <%= hidden_field_tag "selections[group_id][]", "3" %>
+
+    <tr>
+      <th>Group 4:</th>
+    </tr>
+    <% for golfer in @group_4 %>
+      <tr>
+        <td><%= check_box_tag "selections[golfer_id][]", golfer.id %></td>
+        <td><%= golfer.name %></td>
+      </tr>
+    <% end %>
+    <%= hidden_field_tag "selections[group_id][]", "4" %>
+
+    <tr>
+      <th>Group 5:</th>
+    </tr>
+    <% for golfer in @group_5 %>
+      <tr>
+        <td><%= check_box_tag "selections[golfer_id][]", golfer.id %></td>
+        <td><%= golfer.name %></td>
+      </tr>
+    <% end %>
+    <%= hidden_field_tag "selections[group_id][]", "5" %>
+  
+    <tr>
+      <th>Group 6:</th>
+    </tr>
+    <% for golfer in @group_6 %>
+      <tr>
+        <td><%= check_box_tag "selections[golfer_id][]", golfer.id %> </td>
+        <td><%= golfer.name %></td>
+      </tr>
+    <% end %>
+    <%= hidden_field_tag "selections[group_id][]", "6" %>
+  
+    <tr>
+      <th>Group 7:</th>
+    </tr>
+    <% for golfer in @group_7 %>
+      <tr>
+        <td><%= check_box_tag "selections[golfer_id][]", golfer.id %></td>
+        <td><%= golfer.name %></td>
+      </tr>
+    <% end %>
+    <%= hidden_field_tag "selections[group_id][]", "7" %>
+
+    <tr>
+      <th>Field:</th>
+    </tr>
+    <% for golfer in @group_8 %>
+      <tr>
+        <td><%= check_box_tag "selections[golfer_id][]", golfer.id %></td>
+        <td><%= golfer.name %></td>
+      </tr>
+    <% end %>
+    <%= hidden_field_tag "selections[group_id][]", "8" %>
+  </table>
 
   <div class="actions">
     <%= submit_tag "Submit" %>
