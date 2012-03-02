@@ -9,9 +9,6 @@ class UsersController < ApplicationController
   	@user = User.find(params[:id])
   	@title = @user.name
     @selections = @user.selections.find(:all)
-    8.times do
-      @selection = @user.selections.build(params[:selection])
-    end
     @group_1 = Golfer.where(:group_id => "1")
     @group_2 = Golfer.where(:group_id => "2")
     @group_3 = Golfer.where(:group_id => "3")
@@ -30,5 +27,4 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
-
 end

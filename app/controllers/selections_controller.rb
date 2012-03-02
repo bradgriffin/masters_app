@@ -12,11 +12,15 @@ class SelectionsController < ApplicationController
   end 
 
   def create
-    @selection = params[:selections].collect do |selection| 
-      current_user.selections.build(selection) 
+    @golfer_selection = params[:selections][:golfer_id]
+    for golfer in @golfer_selection 
+      @hash = {"golfer_id" => golfer, "group_id" => Golfer.find(golfer).group_id}
+      @selection = current_user.selections.build(@hash)
+      @selection.save
     end
+
     if @selection.save
-      flash[:success] = "Selection made!"
+      flash[:success] = "Selections made!"
       redirect_to current_user
     else
       flash[:error] = "Try again"
@@ -28,10 +32,5 @@ class SelectionsController < ApplicationController
   end
 
   def destroy
-  end
-
-    def pick
-    # TODO make user selections of golfers
-    redirect_to @user
   end
 end
