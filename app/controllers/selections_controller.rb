@@ -33,4 +33,26 @@ class SelectionsController < ApplicationController
 
   def destroy
   end
+
+  def edit_multiple
+    @user = current_user
+    @selections = current_user.selections.find(params[:selection_id])
+  end
+
+  def update_multiple
+    @user = current_user
+    @selection_edit = params[:selections][:selection_id]
+    for selection in @selection_edit 
+      @hash1 = {"selection_id" => selection}
+    end
+    @golfer_selection = params[:selections][:golfer_id]
+    for golfer in @golfer_selection
+      @hash2 = {"golfer_id" => golfer, "group_id" => Golfer.find(golfer).group_id }
+    end
+      @hash = @hash1.merge(@hash2)
+      @selection = current_user.selections.update(@hash)
+      @selection.save
+    flash[:notice] = "Updated products!"
+    redirect_to products_path
+  end
 end

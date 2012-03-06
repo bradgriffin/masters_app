@@ -1,0 +1,27 @@
+<%= form_tag update_multiple_selections_path, :method => :put do%>
+  <table>
+    <% for selection in @selections %>
+      <% @display_selection = Golfer.find(selection.golfer_id) %>
+      <% @group = Golfer.where(:group_id => selection.group_id) %>
+      <tr>
+        <th>Group <%= @display_selection.group_id %>:</th>
+      </tr>
+      <tr>
+        <th>Selection</th>
+        <th>Name</th>
+      </tr>
+        <% for golfer in @group %>
+        <tr>
+          <td><%= check_box_tag "selections[golfer_id][]", golfer.id %></td>
+          <td><%= golfer.name %></td>
+        </tr> 
+      <% end %>
+    <%= hidden_field_tag "selections[selection_id][]", selection.id %>
+    <% end %>
+  </table>
+    
+  <div class="actions">
+    <%= submit_tag "Submit" %>
+  </div>
+
+  <% end %>

@@ -1,0 +1,38 @@
+<table class="front">
+    <tr>
+      <td class="main">
+        <h1 class="selection">Your Selections:</h1>
+      </td>
+    </tr>
+  </table>
+  <table class="front">
+    <tr>
+      <th></th>
+      <th>Golfer Name</th>
+      <th>Golfer Group</th>
+      <th>Round 1</th>
+      <th>Round 2</th>
+      <th>Round 3</th>
+      <th>Round 4</th>
+      <th>Final Score</th>
+      <th>Select/Edit</th>
+    </tr>
+    
+  <%= form_tag edit_multiple_selections_path do %>
+    <% for selection in @selections %>
+    <% @display_selection = Golfer.find(selection.golfer_id) %>
+     <tr>
+        <td><%= check_box_tag "[selection_id][]", selection.id%></td>
+        <td><%= @display_selection.name %></td>
+        <td><%= @display_selection.group_id %></td>
+        <td>100</td>
+        <td>100</td>
+        <td>100</td>
+        <td>100</td>
+        <td>400</td>
+        <td><%= link_to "Edit", edit_user_path %></li></td>
+      </tr>
+    <% end %>
+  </table>
+  <%= submit_tag "Edit Checked" %>
+<% end %>

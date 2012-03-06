@@ -14,13 +14,9 @@
   </tr>
 </table>
 
-<% if has_selections? %>
-  <%= render 'selections_display' %>
-<% else %>
-  <table>
-    <tr>
-        <h1 class="selection">Please make your selections:</h1>
-          <%= render 'shared/selections_form' %>
-    </tr>
-  </table>
-<% end %>
+<table>
+  <tr>
+      <h1 class="selection">Please edit your selections:</h1>
+        <%= render 'shared/edit_selections_form' %>
+  </tr>
+</table>
