@@ -14,14 +14,55 @@
   </tr>
 </table>
 
-<% if signed_in? %>
-  <ul>
+<% if has_selections? %>
+  <table class="front">
+    <tr>
+      <td class="main">
+        <h1 class="selection">Your Selections:</h1>
+      </td>
+    </tr>
+    <tr>
+      <th>Golfer Name</th>
+      <th>Golfer Group</th>
+      <th>Round 1</th>
+      <th>Round 2</th>
+      <th>Round 3</th>
+      <th>Round 4</th>
+      <th>Final Score</th>
+      <th>Select/Edit</th>
+    </tr>
+    
     <% for selection in @selections %>
-    <li>
-      <%= selection.golfer_id %>
-    </li>
+    <% @display_selection = Golfer.find(selection.golfer_id) %>
+     <tr>
+        <td>
+          <%= @display_selection.name %>
+        </td>
+        <td>
+          <%= @display_selection.group_id %>
+        </td>
+        <td>
+          100
+        </td>
+        <td>
+          100
+        </td>
+        <td>
+          100
+        </td>
+        <td>
+          100
+        </td>
+        <td>
+          400
+        </td>
+        <td>
+          Edit
+        </td>
+      </tr>
     <% end %>
-  </ul>
+  </table>
+  <% else %>
   <table class="front">
     <tr>
       <td class="main">
@@ -31,6 +72,5 @@
     </tr>
   </table>
 
-<% else %>
-  <h1>Sample App</h1>
+
 <% end %>

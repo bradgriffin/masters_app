@@ -7,4 +7,8 @@ module UsersHelper
     	image_tag(gravatar_url, alt: user.name, class: "gravatar")
   	end
 
+  	def has_selections?
+  		current_user.selections.count > 0
+	end
+
 end
