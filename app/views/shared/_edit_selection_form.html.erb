@@ -1,0 +1,14 @@
+<%= form_tag selections_path, :method => :put do%>
+  <table>
+    <% @display_selection = Golfer.find(selection.golfer_id) %>
+    <% @group = Golfer.where(:group_id => selection.group_id) %>  
+
+  </table>
+
+
+    
+  <div class="actions">
+    <%= submit_tag "Submit" %>
+  </div>
+
+  <% end %>
