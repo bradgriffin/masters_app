@@ -1,6 +1,9 @@
 class SelectionsController < ApplicationController
   before_filter :authenticate_user!
 
+  def index
+  end
+
   def new
     @title = "Select Team"
     @user = current_user.id
@@ -39,6 +42,13 @@ class SelectionsController < ApplicationController
     @selection = current_user.selections.find(:all)
   end
 
+  def update
+    @selection = current_user.selections.find(params[:selections][:selection_id])
+    @selection.update_attributes("golfer_id" => params[:selections][:golfer_id])
+
+    flash[:notice] = "Updated selections!"
+    redirect_to current_user
+  end
 
   def edit_multiple
     @user = current_user
