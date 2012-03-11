@@ -11,7 +11,7 @@
       </tr>
         <% for golfer in @group %>
         <tr>
-          <td><%= check_box_tag "selections[golfer_id]", golfer.id %></td>
+          <td><%= radio_button_tag "selections[golfer_id]", golfer.id %></td>
           <td><%= golfer.name %></td>
         </tr> 
       <% end %>

@@ -8,8 +8,8 @@
   <table class="front">
     <tr>
       <th></th>
-      <th>Golfer Name</th>
       <th>Golfer Group</th>
+      <th>Golfer Name</th>
       <th>Round 1</th>
       <th>Round 2</th>
       <th>Round 3</th>
@@ -17,22 +17,36 @@
       <th>Final Score</th>
       <th>Select/Edit</th>
     </tr>
-    
+  
   <%= form_tag edit_multiple_selections_path do %>
-    <% for selection in @selections %>
-    <% @display_selection = Golfer.find(selection.golfer_id) %>
-     <tr>
-        <td><%= check_box_tag "[selection_id][]", selection.id%></td>
-        <td><%= @display_selection.name %></td>
-        <td><%= @display_selection.group_id %></td>
-        <td>100</td>
-        <td>100</td>
-        <td>100</td>
-        <td>100</td>
-        <td>400</td>
-        <td><%= link_to "Edit", "/selections/#{selection.id}/edit" %></li></td>
+    <% @groups.each do |f| %>
+      <tr>
+          <% if @user.selections.scoped_by_group_id(f).exists? %>
+            <% @display_selection = Golfer.find(@user.selections.find_by_group_id(f).golfer_id) %>
+            <td><%= check_box_tag "[selection_id][]", @user.selections.find_by_group_id(f).id%></td>
+            <td><%= @display_selection.group_id %></td>
+            <td><%= @display_selection.name %></td>
+            <td>100</td>
+            <td>100</td>
+            <td>100</td>
+            <td>100</td>
+            <td>400</td>
+            <td><%= link_to "Edit", "/selections/#{@user.selections.find_by_group_id(f).id}/edit" %></li></td>
+          <% else %>
+            <td></td>
+            <td><%= f %></td>
+            <td>Blank</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td></td>
+          <% end %>
       </tr>
     <% end %>
   </table>
-  <%= submit_tag "Edit Checked" %>
+  <br>
+    <%= submit_tag "Edit Checked" %>
+  </br>  
 <% end %>

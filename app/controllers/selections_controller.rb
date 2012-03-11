@@ -15,12 +15,10 @@ class SelectionsController < ApplicationController
   end 
 
   def create
-    @golfer_selection = params[:selections][:golfer_id]
-    for golfer in @golfer_selection 
-      @hash = {"golfer_id" => golfer, "group_id" => Golfer.find(golfer).group_id}
-      @selection = current_user.selections.build(@hash)
-      @selection.save
-    end
+    @golfer_selection = params[:golfer_id]
+    @hash = {"golfer_id" => @golfer_selection, "group_id" => Golfer.find(@golfer_selection).group_id}
+    @selection = current_user.selections.build(@hash)
+    @selection.save
 
     if @selection.save
       flash[:success] = "Selections made!"

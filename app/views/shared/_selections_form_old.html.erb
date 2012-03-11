@@ -1,0 +1,98 @@
+<tr>
+      <td><%= select_tag "selections[golfer_id][]", options_for_select(@group_1.collect{|x| [x.name,x.id]}) %> </td>
+    </tr>
+
+<%= form_tag selections_path, :method => :create do %>
+  <table>
+    <tr>
+      <th>Group 1:</th>
+    </tr>
+    <tr>
+      <th>Selection</th>
+      <th>Name</th>
+    </tr>
+
+    <% for golfer in @group_1 %>
+      <tr>
+        <td><%= check_box_tag "selections[golfer_id][]", golfer.id, {:multiple => false}%></td>
+        <td><%= golfer.name %></td>
+      </tr> 
+    <% end %>
+    
+    <tr>
+    <th>Group 2:</th>
+    </tr>
+    <% for golfer in @group_2 %>
+      <tr>
+        <td><%= check_box_tag "selections[golfer_id][]", golfer.id %></td>
+        <td><%= golfer.name %></td>
+      </tr>
+    <% end %>
+  
+    <tr>
+      <th>Group 3:</th>
+    </tr>
+    <% for golfer in @group_3 %>
+      <tr>
+        <td><%= check_box_tag "selections[golfer_id][]", golfer.id %> </td>
+        <td><%= golfer.name %></td>
+      </tr>
+    <% end %>
+
+    <tr>
+      <th>Group 4:</th>
+    </tr>
+    <% for golfer in @group_4 %>
+      <tr>
+        <td><%= check_box_tag "selections[golfer_id][]", golfer.id %></td>
+        <td><%= golfer.name %></td>
+      </tr>
+    <% end %>
+
+    <tr>
+      <th>Group 5:</th>
+    </tr>
+    <% for golfer in @group_5 %>
+      <tr>
+        <td><%= check_box_tag "selections[golfer_id][]", golfer.id %></td>
+        <td><%= golfer.name %></td>
+      </tr>
+    <% end %>
+  
+    <tr>
+      <th>Group 6:</th>
+    </tr>
+    <% for golfer in @group_6 %>
+      <tr>
+        <td><%= check_box_tag "selections[golfer_id][]", golfer.id %> </td>
+        <td><%= golfer.name %></td>
+      </tr>
+    <% end %>
+  
+    <tr>
+      <th>Group 7:</th>
+    </tr>
+    <% for golfer in @group_7 %>
+      <tr>
+        <td><%= check_box_tag "selections[golfer_id][]", golfer.id %></td>
+        <td><%= golfer.name %></td>
+      </tr>
+    <% end %>
+
+    <tr>
+      <th>Field:</th>
+    </tr>
+    <% for golfer in @group_8 %>
+      <tr>
+        <td><%= check_box_tag "selections[golfer_id][]", golfer.id %></td>
+        <td><%= golfer.name %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <div class="actions">
+    <%= submit_tag "Submit" %>
+  </div>
+
+<% end %>
+

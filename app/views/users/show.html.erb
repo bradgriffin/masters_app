@@ -13,14 +13,6 @@
     </td>
   </tr>
 </table>
-
-<% if has_selections? %>
-  <%= render 'selections_display' %>
-<% else %>
-  <table>
-    <tr>
-        <h1 class="selection">Please make your selections:</h1>
-          <%= render 'shared/selections_form' %>
-    </tr>
-  </table>
-<% end %>
+<%= render 'selections_display' %>
+<br>
+<%= render 'shared/selections_form' %>
