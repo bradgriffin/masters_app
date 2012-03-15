@@ -169,11 +169,45 @@ td.sidebar {
 }
 
 table.front {
-    width: 100%;
+  width: 100%;
   margin-bottom: 0;
   margin-top: 10px;
 }
 
 tr.title {
   padding: 1em;
+}
+
+/* Selections Table */
+table.selections {
+  width: 100%;
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+table.selections tr th{
+  font-size: .9em;
+  text-align: center;
+  border-bottom: 1px solid black;
+
+}
+table.selections tr td {
+  font-size: .9em;
+  text-align: center;
+}
+
+/* Available Table */
+table.available {
+  width: 75%;
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+table.available tr th{
+  text-align: center;
+  border-bottom: 1px solid black;
+
+}
+table.available tr td {
+  text-align: center;
 }

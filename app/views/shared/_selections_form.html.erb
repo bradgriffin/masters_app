@@ -4,7 +4,7 @@
   <% end %>
 <% end %>
 
-<% if @groups_available == nil %>
+<% if @groups_available == [] %>
 <% else %>
 
 <table class="front">
@@ -14,23 +14,25 @@
       </td>
     </tr>
   </table>
-<table>
+<table class="available">
 
   <tr>
     <th>Selection</th>
     <th>Group</th>
     <th>Name</th>
+    <th>Status</th>
   </tr>
 
   <% @groups_available.each do |f| %>
     <% @group = Golfer.where(:group_id => f) %>
       <% for golfer in @group %>
-        <%= form_tag selections_path, :method => :create do %>
         <tr>
+          <%= form_tag selections_path, :method => :create do %>
           <%= hidden_field_tag "golfer_id", golfer.id %>
           <td><%= submit_tag "Add" %></td>
           <td><%= golfer.group_id %></td>
           <td><%= golfer.name %></td>
+          <td><%= golfer.status %></td>
         </tr> 
       <% end %>
     <% end %>
