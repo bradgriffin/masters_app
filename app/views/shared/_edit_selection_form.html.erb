@@ -1,25 +1,25 @@
-<%= form_tag selection_path, :method => :put do%>
-  <table>
-    <% @current_selection = current_user.selections.find(params[:id]) %>
-    <% @group = Golfer.where(:group_id => @current_selection.group_id) %>
+<table>
+  <% @current_selection = current_user.selections.find(params[:id]) %>
+  <% @group = Golfer.where(:group_id => @current_selection.group_id) %>
+  <tr>
+      <th>Group <%= @current_selection.group_id %>:</th>
+    </tr>
     <tr>
-        <th>Group <%= @current_selection.group_id %>:</th>
-      </tr>
-      <tr>
-        <th>Selection</th>
-        <th>Name</th>
-      </tr>
-        <% for golfer in @group %>
-        <tr>
-          <td><%= radio_button_tag "selections[golfer_id]", golfer.id %></td>
-          <td><%= golfer.name %></td>
-        </tr> 
+      <th></th>
+      <th>Selection</th>
+      <th>Name</th>
+    </tr>
+      <% for golfer in @group %>
+        <%= form_tag selections_path, :method => :create do %>
+          <tr>
+            <%= hidden_field_tag "selections[golfer_id]", golfer.id %>
+            <%= hidden_field_tag "selections[selection_id]", @current_selection.id %>
+            <td><%= submit_tag "Update Selection" %></td>
+            <td><%= golfer.group_id %></td>
+            <td><%= golfer.name %></td>
+          </tr> 
+        <% end %>
       <% end %>
-    <%= hidden_field_tag "selections[selection_id]", @current_selection.id %>
-  </table>
-    
-  <div class="actions">
-    <%= submit_tag "Submit" %>
-  </div>
-
-  <% end %>
+</table>
+<br>
+      <%= link_to "Back", current_user %>

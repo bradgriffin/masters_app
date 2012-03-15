@@ -21,7 +21,7 @@ class SelectionsController < ApplicationController
     @selection.save
 
     if @selection.save
-      flash[:success] = "Selections made!"
+      flash[:success] = "Selection made!"
       redirect_to current_user
     else
       flash[:error] = "Try again"
@@ -33,6 +33,10 @@ class SelectionsController < ApplicationController
   end
 
   def destroy
+    @selection = current_user.selections.find_by_id(params[:id])
+    @selection.destroy
+    flash[:notice] = "Removed selection!"
+    redirect_to current_user
   end
 
   def edit
@@ -44,7 +48,7 @@ class SelectionsController < ApplicationController
     @selection = current_user.selections.find(params[:selections][:selection_id])
     @selection.update_attributes("golfer_id" => params[:selections][:golfer_id])
 
-    flash[:notice] = "Updated selections!"
+    flash[:notice] = "Updated selection!"
     redirect_to current_user
   end
 

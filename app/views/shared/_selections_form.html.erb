@@ -1,3 +1,12 @@
+<% @groups.each do |f| %>
+  <% if @user.selections.scoped_by_group_id(f).empty? %>
+  <% @groups_available << f %>
+  <% end %>
+<% end %>
+
+<% if @groups_available == nil %>
+<% else %>
+
 <table class="front">
     <tr>
       <td class="main">
@@ -6,16 +15,17 @@
     </tr>
   </table>
 <table>
+
   <tr>
     <th>Selection</th>
     <th>Group</th>
     <th>Name</th>
   </tr>
 
-  <% @groups.each do |f| %>
+  <% @groups_available.each do |f| %>
     <% @group = Golfer.where(:group_id => f) %>
-    <%= form_tag selections_path, :method => :create do %>
       <% for golfer in @group %>
+        <%= form_tag selections_path, :method => :create do %>
         <tr>
           <%= hidden_field_tag "golfer_id", golfer.id %>
           <td><%= submit_tag "Add" %></td>
@@ -24,6 +34,7 @@
         </tr> 
       <% end %>
     <% end %>
+  <% end %>
 
 
 <% end %>

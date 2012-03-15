@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   	@title = @user.name
     @selections = @user.selections.find(:all, :order => "group_id asc")
     @groups = (1..8).entries
+    @groups_available = []
   end
 
   def create
