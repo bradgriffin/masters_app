@@ -1,25 +1,31 @@
-<table>
-  <% @current_selection = current_user.selections.find(params[:id]) %>
-  <% @group = Golfer.where(:group_id => @current_selection.group_id) %>
+<table class="front">
   <tr>
-      <th>Group <%= @current_selection.group_id %>:</th>
-    </tr>
-    <tr>
-      <th></th>
-      <th>Selection</th>
-      <th>Name</th>
-    </tr>
-      <% for golfer in @group %>
+    <td class="main">
+      <h1 class="selection">Edit your selections:</h1>
+    </td>
+  </tr>
+</table>
+<% @current_selection = current_user.selections.find(params[:id]) %>
+<% @group = Golfer.where(:group_id => @current_selection.group_id) %>
+<table class="available">
+  <tr>
+    <th>Selection</th>
+    <th>Group</th>
+    <th>Golfer Name</th>
+    <th>Status</th>
+  </tr>
+    <% for golfer in @group %>
+      <tr>
         <%= form_tag selections_path, :method => :create do %>
-          <tr>
-            <%= hidden_field_tag "selections[golfer_id]", golfer.id %>
-            <%= hidden_field_tag "selections[selection_id]", @current_selection.id %>
-            <td><%= submit_tag "Update Selection" %></td>
-            <td><%= golfer.group_id %></td>
-            <td><%= golfer.name %></td>
-          </tr> 
+          <%= hidden_field_tag "selections[golfer_id]", golfer.id %>
+          <%= hidden_field_tag "selections[selection_id]", @current_selection.id %>
+          <td><%= submit_tag "Update" %></td>
+          <td><%= golfer.group_id %></td>
+          <td><%= golfer.name %></td>
+          <td><%= golfer.status %></td>
+      </tr> 
         <% end %>
-      <% end %>
+    <% end %>
 </table>
 
 <br>
