@@ -3,6 +3,40 @@
 	Where do you stack up against the world?
 </p>
 	
-<% @users.each do |user| %>
-<p>User: <%=link_to user.name, user %></p>
-<% end %>
+<table class="selections">
+  <tr>
+	<th>User</th>
+    <th>Round 1 Total</th>
+    <th>Round 2 Total</th>
+    <th>Round 3 Total</th>
+    <th>Round 4 Total</th>
+    <th>Total</th>
+  </tr>
+
+  	<% for user in @users %>
+  		<% @selections = user.selections %>
+   		<% for selection in @selections %>
+   			<% @golfer = Golfer.find_by_id(selection.golfer_id) %>
+   			<% if @golfer.result %>
+   				<% @result_1 = @golfer.result.round_1 %>
+   				<% @result_2 = @golfer.result.round_2 %>
+   				<% @result_3 = @golfer.result.round_3 %>
+   				<% @result_4 = @golfer.result.round_4 %>
+   				<% @results_1 << @result_1 %>
+   				<% @results_2 << @result_2 %>
+   				<% @results_3 << @result_3 %>
+   				<% @results_4 << @result_4 %>
+   			<% end %>
+		<% end %>
+		<% @total = [@results_1.sum,@results_2.sum,@results_3.sum,@results_4.sum] %>
+
+	  	<tr>
+		   	<td><%=link_to user.name, user %></td>
+		   	<td><%= @results_1.sum %></td>
+		   	<td><%= @results_2.sum %></td>
+		   	<td><%= @results_3.sum %></td>
+		   	<td><%= @results_4.sum %></td>
+		   	<td><%= @total.sum %></td>
+	   	</tr>
+	<% end %>
+</table>

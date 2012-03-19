@@ -1,7 +1,7 @@
 <table class="front">
     <tr>
       <td class="main">
-        <h1 class="selection">Your Selections:</h1>
+        <h1 class="selection">Selections:</h1>
       </td>
     </tr>
   </table>
@@ -14,7 +14,9 @@
     <th>Round 3</th>
     <th>Round 4</th>
     <th>Final Score</th>
-    <th>Edit / Delete</th>
+      <% if correct_user?(@user) %>
+        <th>Edit / Delete</th>
+        <% end %>
   </tr>
 
 <% @groups.each do |f| %>
@@ -28,7 +30,9 @@
         <td>100</td>
         <td>100</td>
         <td>400</td>
-        <td><%= link_to "Edit", "/selections/#{@user.selections.find_by_group_id(f).id}/edit" %> <%= link_to "Delete", "/selections/#{@user.selections.find_by_group_id(f).id}", :method => :delete, :confirm => "Are you sure?" %></td>
+          <% if correct_user?(@user) %>
+          <td><%= link_to "Edit", "/selections/#{@user.selections.find_by_group_id(f).id}/edit" %> <%= link_to "Delete", "/selections/#{@user.selections.find_by_group_id(f).id}", :method => :delete, :confirm => "Are you sure?" %></td>
+          <% end %>
       <% else %>
         <td><%= f %></td>
         <td>Blank</td>
@@ -37,7 +41,9 @@
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td></td>
+          <% if correct_user?(@user) %>
+          <td></td>
+          <% end %>
       <% end %>
   </tr>
 <% end %>

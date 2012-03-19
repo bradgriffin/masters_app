@@ -35,4 +35,5 @@ class UsersController < ApplicationController
     @group_7 = Golfer.where(:group_id => "7")
     @group_8 = Golfer.where(:group_id => "8")
   end
+
 end

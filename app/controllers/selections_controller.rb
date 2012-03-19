@@ -1,5 +1,6 @@
 class SelectionsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :correct_user,   only: [:destroy, :edit]
 
   def index
   end
@@ -72,4 +73,11 @@ class SelectionsController < ApplicationController
     flash[:notice] = "Updated selections!"
     redirect_to current_user
   end
+
+  private
+
+    def correct_user
+      @selection = current_user.selections.find_by_id(params[:id])
+      redirect_to root_path if @selection.nil?
+    end
 end

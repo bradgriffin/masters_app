@@ -1,6 +1,7 @@
 class Golfer < ActiveRecord::Base
 	has_many :selections
 	has_many :users, :through => :selections
+	has_one :result
 
 	attr_accessible :name, :status, :group_id
 
