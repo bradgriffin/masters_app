@@ -18,6 +18,7 @@ class StaticPagesController < ApplicationController
     @results_3 = []
     @results_4 = []
     @total = []
+    @totals = []
   end
 
   def standings
