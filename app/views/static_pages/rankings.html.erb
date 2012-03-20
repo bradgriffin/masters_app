@@ -26,9 +26,8 @@
    				<% @results_2 << @result_2 %>
    				<% @results_3 << @result_3 %>
    				<% @results_4 << @result_4 %>
+          <% @total = [@results_1.sum,@results_2.sum,@results_3.sum,@results_4.sum] %>
    			<% end %>
-		<% end %>
-		<% @total = [@results_1.sum,@results_2.sum,@results_3.sum,@results_4.sum] %>
 
 	  	<tr>
 		   	<td><%=link_to user.name, user %></td>
@@ -38,5 +37,6 @@
 		   	<td><%= @results_4.sum %></td>
 		   	<td><%= @total.sum %></td>
 	   	</tr>
+    <% end %>      
 	<% end %>
 </table>

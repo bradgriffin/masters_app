@@ -23,15 +23,27 @@
   <tr>
       <% if @user.selections.scoped_by_group_id(f).exists? %>
         <% @display_selection = Golfer.find(@user.selections.find_by_group_id(f).golfer_id) %>
-        <td><%= @display_selection.group_id %></td>
-        <td><%= @display_selection.name %></td>
-        <td>100</td>
-        <td>100</td>
-        <td>100</td>
-        <td>100</td>
-        <td>400</td>
-          <% if correct_user?(@user) %>
-          <td><%= link_to "Edit", "/selections/#{@user.selections.find_by_group_id(f).id}/edit" %> <%= link_to "Delete", "/selections/#{@user.selections.find_by_group_id(f).id}", :method => :delete, :confirm => "Are you sure?" %></td>
+          <td><%= @display_selection.group_id %></td>
+          <td><%= @display_selection.name %></td>
+          <% if @display_selection.result %>
+            <td><%= @display_selection.result.round_1 %></td>
+            <td><%= @display_selection.result.round_2 %></td>
+            <td><%= @display_selection.result.round_3 %></td>
+            <td><%= @display_selection.result.round_4 %></td>
+            <% @total = [@display_selection.result.round_1,@display_selection.result.round_2,@display_selection.result.round_3,@display_selection.result.round_4] %>
+            <td><%= @total.sum %></td>
+              <% if correct_user?(@user) %>
+                <td><%= link_to "Edit", "/selections/#{@user.selections.find_by_group_id(f).id}/edit" %> <%= link_to "Delete", "/selections/#{@user.selections.find_by_group_id(f).id}", :method => :delete, :confirm => "Are you sure?" %></td>
+              <% end %>
+          <% else %>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+              <% if correct_user?(@user) %>
+                <td></td>
+              <% end %>
           <% end %>
       <% else %>
         <td><%= f %></td>
@@ -41,9 +53,9 @@
         <td>-</td>
         <td>-</td>
         <td>-</td>
-          <% if correct_user?(@user) %>
+        <% if correct_user?(@user) %>
           <td></td>
-          <% end %>
+        <% end %>
       <% end %>
   </tr>
 <% end %>
