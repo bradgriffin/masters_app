@@ -16,7 +16,7 @@
   </tr>
     <% for golfer in @group %>
       <tr>
-        <%= form_tag selections_path, :method => :create do %>
+        <%= form_tag selection_path, :method => :put do %>
           <%= hidden_field_tag "selections[golfer_id]", golfer.id %>
           <%= hidden_field_tag "selections[selection_id]", @current_selection.id %>
           <td><%= submit_tag "Update" %></td>

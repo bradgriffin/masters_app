@@ -5,7 +5,8 @@
 	
 <table class="selections">
   <tr>
-	<th>User</th>
+    <th>Rank</th>
+    <th>User</th>
     <th>Round 1 Total</th>
     <th>Round 2 Total</th>
     <th>Round 3 Total</th>
@@ -27,6 +28,12 @@
     <% for user in @sorted_users %>
       <% user_results(user) %>
 	  	<tr>
+        <% if @total.sum == @previous_total.sum %>
+          <td>T<%= @rank %></td>
+        <% else %>
+          <% @rank = @rank + 1 %>
+          <td><%= @rank %></td>
+        <% end %>
 		   	<td><%=link_to @user.name, @user %></td>
 		   	<td><%= @results_1.sum %></td>
 		   	<td><%= @results_2.sum %></td>
@@ -34,6 +41,8 @@
 		   	<td><%= @results_4.sum %></td>
 		   	<td><%= @total.sum %></td>
 	   	</tr>
-      <%  reset_vars() %>
+      <% @previous_total = [] %>
+      <% @previous_total = [@results_1.sum,@results_2.sum,@results_3.sum,@results_4.sum] %>
+      <% reset_vars() %>
 	<% end %>
 </table>

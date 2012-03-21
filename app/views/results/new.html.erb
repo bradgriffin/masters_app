@@ -1,0 +1,33 @@
+<h1>Add Result</h1>
+
+<%= form_for(@result) do |f| %>
+<%= render 'shared/error_messages', :object => f.object %>
+  <div class="field">
+  <%= f.label :round_1 %><br />
+  <%= f.text_field :round_1 %>
+  </div>
+  
+  <div class="field">
+  <%= f.label :round_2 %><br />
+  <%= f.text_field :round_2 %>
+  </div>
+
+  <div class="field">
+  <%= f.label :round_3 %><br />
+  <%= f.text_field :round_3 %>
+  </div>
+
+  <div class="field">
+  <%= f.label :round_4 %><br />
+  <%= f.text_field :round_4 %>
+  </div>
+
+  <div class="field">
+  <%= f.label :golfer_id %><br />
+  <%= f.text_field :golfer_id %>
+  </div>
+
+  <div class="actions">
+  <%= f.submit "Add Result" %>
+  </div>
+<% end %>

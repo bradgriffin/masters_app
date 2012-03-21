@@ -1,0 +1,30 @@
+<%= form_tag update_multiple_results_path, :method => :put do %>
+  <table>
+    <tr>
+      <th>Group</th>
+      <th>Golfer Name</th>
+      <th>Round 1</th>
+      <th>Round 2</th>
+      <th>Round 3</th>
+      <th>Round 4</th>
+    </tr>
+
+    <% for golfer in @golfers %>
+      <% @display_golfer = Golfer.find(golfer.id) %>
+      <tr>
+        <%= hidden_field_tag "golfers[result_id][]", golfer.result.id %>
+        <td><%= golfer.group_id %></td>
+        <td><%= golfer.name %></td>
+        <td><%= text_field_tag "golfers[round_1][]", golfer.result.round_1, :size => 3 %></td>
+        <td><%= text_field_tag "golfers[round_2][]", golfer.result.round_2, :size => 3%></td>
+        <td><%= text_field_tag "golfers[round_3][]", golfer.result.round_3, :size => 3 %></td>
+        <td><%= text_field_tag "golfers[round_4][]", golfer.result.round_4, :size => 3 %></td>
+      </tr> 
+    <% end %>
+  </table>
+    
+  <div class="actions">
+    <%= submit_tag "Submit" %>
+  </div>
+
+  <% end %>

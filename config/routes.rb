@@ -3,6 +3,12 @@ MastersApp::Application.routes.draw do
   devise_for :users 
   resources :users, :only => [:show, :edit]
   resources :golfers, :only => [:new, :create, :show]
+  resources :results do
+    collection do
+      post :edit_multiple
+      put :update_multiple
+    end
+  end
   resources :selections do
     collection do
       post :edit_multiple

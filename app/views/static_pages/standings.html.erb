@@ -2,6 +2,7 @@
 
 <table class="selections">
   <tr>
+  	<th>Position</th>
 	<th>Golfer</th>
     <th>Round 1 Total</th>
     <th>Round 2 Total</th>
@@ -24,6 +25,12 @@
   <% for golfer in @sorted_golfers %>
   	<% golfer_results(golfer) %>
 	  	<tr>
+			<% if @total.sum == @previous_total.sum %>
+  					<td>T<%= @position %></td>
+			<% else %>
+				<% @position = @position + 1 %>
+				<td><%= @position %></td>
+			<% end %>
 		   	<td><%=link_to @golfer.name, @golfer %></td>
 		   	<td><%= @results_1.sum %></td>
 		   	<td><%= @results_2.sum %></td>
@@ -31,6 +38,8 @@
 		   	<td><%= @results_4.sum %></td>
 		   	<td><%= @total.sum %></td>
 	   	</tr>
+	   	<% @previous_total = [] %>
+	  	<% @previous_total = [@results_1.sum,@results_2.sum,@results_3.sum,@results_4.sum] %>
       <%  reset_vars() %>
 	<% end %>
 </table>
