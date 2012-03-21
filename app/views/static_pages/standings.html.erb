@@ -1,5 +1,36 @@
 <h1>Current Masters Standings</h1>
 
-<% @golfers.each do |golfer| %>
- <p>Golfer: <%=link_to golfer.name, golfer %></p>
- <% end %>
+<table class="selections">
+  <tr>
+	<th>Golfer</th>
+    <th>Round 1 Total</th>
+    <th>Round 2 Total</th>
+    <th>Round 3 Total</th>
+    <th>Round 4 Total</th>
+    <th>Total</th>
+  </tr>
+
+  	<% for golfer in @golfers %>
+  		<% golfer_results(golfer) %>
+		<% @totals << {"golfer"=>golfer.id, "total"=>@total.sum} %>
+		<% @sorted_totals = @totals.sort! { |x, y| x["total"] <=> y["total"] } %>
+		<% @sorted_golfers = [] %>
+		<% @sorted_totals.each do |u| %>
+			<% @sorted_golfers << u["golfer"] %>
+		<% end %>
+		<%  reset_vars() %>
+	<% end %>
+
+  <% for golfer in @sorted_golfers %>
+  	<% golfer_results(golfer) %>
+	  	<tr>
+		   	<td><%=link_to @golfer.name, @golfer %></td>
+		   	<td><%= @results_1.sum %></td>
+		   	<td><%= @results_2.sum %></td>
+		   	<td><%= @results_3.sum %></td>
+		   	<td><%= @results_4.sum %></td>
+		   	<td><%= @total.sum %></td>
+	   	</tr>
+      <%  reset_vars() %>
+	<% end %>
+</table>

@@ -11,4 +11,13 @@ module UsersHelper
   		current_user.selections.count > 0
 	end
 
+	def selection_results(selection)
+		if selection.result
+            @result_1 = selection.result.round_1
+            @result_2 = selection.result.round_2
+            @result_3 = selection.result.round_3
+            @result_4 = selection.result.round_4
+            @total = [selection.result.round_1,selection.result.round_2,selection.result.round_3,selection.result.round_4]
+        end
+    end
 end

@@ -11,6 +11,12 @@ class UsersController < ApplicationController
     @selections = @user.selections.find(:all, :order => "group_id asc")
     @groups = (1..8).entries
     @groups_available = []
+    @result_1 = 0
+    @result_2 = 0
+    @result_3 = 0
+    @result_4 = 0
+    @total = []
+    @totals = []
   end
 
   def create
