@@ -43,7 +43,7 @@ class ResultsController < ApplicationController
       @result.update_attributes("round_1" => round_1)
     end
 
-    hash2.each do |rount_2,result|
+    hash2.each do |round_2,result|
       @result = Result.find(result)
       @result.update_attributes("round_2" => round_2)
     end
@@ -59,6 +59,6 @@ class ResultsController < ApplicationController
     end
 
     flash[:notice] = "Updated results!"
-    redirect_to results_show_path
+    redirect_to current_user
   end
 end
