@@ -1,4 +1,6 @@
 class GolfersController < ApplicationController
+  before_filter :authenticate_user!
+  
   def new
   	@golfer = Golfer.new
 	end

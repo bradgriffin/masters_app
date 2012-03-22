@@ -22,6 +22,7 @@
     <th>Selection</th>
     <th>Group</th>
     <th>Name</th>
+    <th>Country</th>
     <th>Status</th>
   </tr>
 
@@ -34,6 +35,7 @@
           <td><%= submit_tag "Add" %></td>
           <td><%= golfer.group_id %></td>
           <td><%= golfer.name %></td>
+          <td><%= golfer.country_name %></td>
           <td><%= golfer.status %></td>
         </tr> 
       <% end %>

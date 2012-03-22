@@ -12,6 +12,7 @@
     <th>Selection</th>
     <th>Group</th>
     <th>Golfer Name</th>
+    <th>Country</th>
     <th>Status</th>
   </tr>
     <% for golfer in @group %>
@@ -22,6 +23,7 @@
           <td><%= submit_tag "Update" %></td>
           <td><%= golfer.group_id %></td>
           <td><%= golfer.name %></td>
+          <td><%= golfer.country_name %></td>
           <td><%= golfer.status %></td>
       </tr> 
         <% end %>
