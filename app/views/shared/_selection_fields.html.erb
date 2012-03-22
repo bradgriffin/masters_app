@@ -1,6 +1,0 @@
-<p>
-  <div class="select" >
-      <%= f.collection_select :golfer_id,  Golfer.where(:group_id => "1"), :id, :name, :prompt => true %>
-      <%= f.hidden_field :group_id, value: "1" %>  
-    </div>
-</p>
