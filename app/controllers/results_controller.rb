@@ -33,29 +33,29 @@ class ResultsController < ApplicationController
     hash2 = {}
     hash3 = {}
     hash4 = {}
-    @round_1.each_with_index {|k,i|hash1[k] = @results[i]}
-    @round_2.each_with_index {|k,i|hash2[k] = @results[i]}
-    @round_3.each_with_index {|k,i|hash3[k] = @results[i]}
-    @round_4.each_with_index {|k,i|hash4[k] = @results[i]}
+    @results.each_with_index {|k,i|hash1[k] = @round_1[i]}
+    @results.each_with_index {|k,i|hash2[k] = @round_2[i]}
+    @results.each_with_index {|k,i|hash3[k] = @round_3[i]}
+    @results.each_with_index {|k,i|hash4[k] = @round_4[i]}
 
-    hash1.each do |round_1,result|
-      @result = Result.find(result)
-      @result.update_attributes("round_1" => round_1)
+    hash1.each do |result_id,score|
+      @result = Result.find(result_id)
+      @result.update_attributes("round_1" => score)
     end
 
-    hash2.each do |round_2,result|
-      @result = Result.find(result)
-      @result.update_attributes("round_2" => round_2)
+    hash2.each do |result_id,score|
+      @result = Result.find(result_id)
+      @result.update_attributes("round_2" => score)
     end
 
-    hash3.each do |round_3,result|
-      @result = Result.find(result)
-      @result.update_attributes("round_3" => round_3)
+    hash3.each do |result_id,score|
+      @result = Result.find(result_id)
+      @result.update_attributes("round_3" => score)
     end
 
-    hash4.each do |round_4,result|
-      @result = Result.find(result)
-      @result.update_attributes("round_4" => round_4)
+    hash4.each do |result_id,score|
+      @result = Result.find(result_id)
+      @result.update_attributes("round_4" => score)
     end
 
     flash[:notice] = "Updated results!"

@@ -13,6 +13,7 @@
       <% @display_golfer = Golfer.find(golfer.id) %>
       <tr>
         <%= hidden_field_tag "golfers[result_id][]", golfer.result.id %>
+        <%= hidden_field_tag "golfers[golfer_id][]", golfer.id %>
         <td><%= golfer.group_id %></td>
         <td><%= golfer.name %></td>
         <td><%= text_field_tag "golfers[round_1][]", golfer.result.round_1, :size => 3 %></td>

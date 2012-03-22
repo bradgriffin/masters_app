@@ -12,7 +12,7 @@ class StaticPagesController < ApplicationController
   end
 
   def rankings
-    @rank = 1
+    @rank = 0
     @title = 'Rankings'
     @results_1 = []
     @results_2 = []
@@ -24,7 +24,7 @@ class StaticPagesController < ApplicationController
   end
 
   def standings
-    @position = 1
+    @position = 0
     @title = 'Standings'
     @results_1 = []
     @results_2 = []
