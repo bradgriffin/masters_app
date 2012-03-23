@@ -3,6 +3,7 @@
   <tr>
   	<th>Position</th>
 	<th>Golfer</th>
+	<th>Country</th>
     <th>Round 1 Total</th>
     <th>Round 2 Total</th>
     <th>Round 3 Total</th>
@@ -31,6 +32,7 @@
 				<td><%= @position %></td>
 			<% end %>
 		   	<td><%=link_to @golfer.name, @golfer %></td>
+		   	<td><%= @golfer.country_name %></td>
 		   	<td><%= @results_1.sum %></td>
 		   	<td><%= @results_2.sum %></td>
 		   	<td><%= @results_3.sum %></td>
