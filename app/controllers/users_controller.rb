@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @current_time = Time.new
   	@user = User.find(params[:id])
   	@title = @user.name
     @selections = @user.selections.find(:all, :order => "group_id asc")

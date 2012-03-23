@@ -25,4 +25,9 @@ module ApplicationHelper
       @result_3 = 0
       @result_4 = 0
     end
+
+    def before_locktime?(time)
+      @lock_time = Time.new(2012,4,5,8,0,0,"-05:00")
+      time < @lock_time
+    end
 end

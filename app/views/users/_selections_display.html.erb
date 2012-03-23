@@ -16,37 +16,66 @@
     <th>Final Score</th>
       <% if correct_user?(@user) %>
         <th>Edit / Delete</th>
-        <% end %>
+      <% end %>
   </tr>
-
-<% @groups.each do |f| %>
-  <tr>
-      <% if @user.selections.scoped_by_group_id(f).exists? %>
-        <% @display_selection = Golfer.find(@user.selections.find_by_group_id(f).golfer_id) %>
-          <td><%= @display_selection.group_id %></td>
-          <td><%= @display_selection.name %></td>
-          <% selection_results(@display_selection) %>
+<% if correct_user?(@user) %>
+  <% @groups.each do |f| %>
+    <tr>
+        <% if @user.selections.scoped_by_group_id(f).exists? %>
+          <% @display_selection = Golfer.find(@user.selections.find_by_group_id(f).golfer_id) %>
+            <td><%= @display_selection.group_id %></td>
+            <td><%= @display_selection.name %></td>
+            <% selection_results(@display_selection) %>
             <td><%= @result_1 %></td>
             <td><%= @result_2 %></td>
             <td><%= @result_3 %></td>
             <td><%= @result_4 %></td>
             <td><%= @total.sum %></td>
-            <% if correct_user?(@user) %>
-              <td><%= link_to "Edit", "/selections/#{@user.selections.find_by_group_id(f).id}/edit" %> <%= link_to "Delete", "/selections/#{@user.selections.find_by_group_id(f).id}", :method => :delete, :confirm => "Are you sure?" %></td>
-            <% end %>
+            <td><%= link_to "Edit", "/selections/#{@user.selections.find_by_group_id(f).id}/edit" %> <%= link_to "Delete", "/selections/#{@user.selections.find_by_group_id(f).id}", :method => :delete, :confirm => "Are you sure?" %></td>
             <%  reset_vars() %>
-      <% else %>
-        <td><%= f %></td>
-        <td>Blank</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <% if correct_user?(@user) %>
+        <% else %>
+          <td><%= f %></td>
+          <td>Blank</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
           <td></td>
         <% end %>
-      <% end %>
-  </tr>
+    </tr>
+  <% end %>
+
+<% else %> 
+  <% if before_locktime?(@current_time) %>
+    <tr>
+      <td colspan="7">Please check back after 8:00am CST on Thursday, April 5, 2012.</td>
+    </tr>
+  <% else %>
+    <% @groups.each do |f| %>
+      <tr>
+        <% if @user.selections.scoped_by_group_id(f).exists? %>
+          <% @display_selection = Golfer.find(@user.selections.find_by_group_id(f).golfer_id) %>
+            <td><%= @display_selection.group_id %></td>
+            <td><%= @display_selection.name %></td>
+            <% selection_results(@display_selection) %>
+              <td><%= @result_1 %></td>
+              <td><%= @result_2 %></td>
+              <td><%= @result_3 %></td>
+              <td><%= @result_4 %></td>
+              <td><%= @total.sum %></td>
+              <%reset_vars() %>
+        <% else %>
+          <td><%= f %></td>
+          <td>Blank</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        <% end %>
+      </tr>
+    <% end %>
+  <% end %>
 <% end %>
 </table>
