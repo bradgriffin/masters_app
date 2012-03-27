@@ -25,6 +25,8 @@ class StaticPagesController < ApplicationController
 
   def standings
     @position = 0
+    @par = 72
+    @rounds_completed = 0
     @title = 'Standings'
     @results_1 = []
     @results_2 = []

@@ -37,4 +37,21 @@ module StaticPagesHelper
 			end
 		end
 	end
+
+	def round_score_to_par(score)
+		if score == 0
+			0
+		else
+		score - @par
+		end
+	end
+
+	def total_score_to_par(score)
+		if @rounds_completed == 0
+			0
+		else
+		@total_for_rounds_completed = @par * @rounds_completed
+		score - @total_for_rounds_completed
+		end
+	end
 end

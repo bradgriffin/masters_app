@@ -33,11 +33,11 @@
 			<% end %>
 		   	<td><%=link_to @golfer.name, @golfer %></td>
 		   	<td><%= @golfer.country_name %></td>
-		   	<td><%= @results_1.sum %></td>
-		   	<td><%= @results_2.sum %></td>
-		   	<td><%= @results_3.sum %></td>
-		   	<td><%= @results_4.sum %></td>
-		   	<td><%= @total.sum %></td>
+		   	<td><%= round_score_to_par(@results_1.sum)%></td>
+		   	<td><%= round_score_to_par(@results_2.sum) %></td>
+		   	<td><%= round_score_to_par(@results_3.sum) %></td>
+		   	<td><%= round_score_to_par(@results_4.sum) %></td>
+		   	<td><%= total_score_to_par(@total.sum) %></td>
 	   	</tr>
 	   	<% @previous_total = [] %>
 	  	<% @previous_total = [@results_1.sum,@results_2.sum,@results_3.sum,@results_4.sum] %>

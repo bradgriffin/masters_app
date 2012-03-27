@@ -172,7 +172,18 @@ table.front {
   width: 100%;
   margin-bottom: 0;
   margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
 }
+
+table.available-title {
+  width: 92%;
+  margin-bottom: 0;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 
 tr.title {
   padding: 1em;
@@ -196,9 +207,10 @@ table.selections tr td {
 
 /* Available Table */
 table.available {
-  width: 75%;
+  width: 92%;
   margin-bottom: 0;
-  white-space: nowrap;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 table.available tr th{
@@ -208,4 +220,5 @@ table.available tr th{
 }
 table.available tr td {
   text-align: center;
+  white-space: nowrap;
 }

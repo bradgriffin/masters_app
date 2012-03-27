@@ -8,22 +8,24 @@
 <% if @groups_available == [] %>
 <% else %>
 
-<table class="front">
-    <tr>
-      <td class="main">
-        <h1 class="selection">Available Golfers:</h1>
-        <p>*** Remember, you may only select one golfer from each group. Choose wisely! *** </p>
-      </td>
-    </tr>
-  </table>
-<table class="available">
+<table class="available-title">
+  <tr>
+    <td class="main">
+      <h1 class="selection">Available Golfers:</h1>
+      <p>*** Remember, you may only select one golfer from each group. Choose wisely! *** </p>
+    </td>
+  </tr>
+</table>
 
+<table class="available">
   <tr>
     <th>Selection</th>
     <th>Group</th>
     <th>Name</th>
     <th>Country</th>
     <th>Status</th>
+    <th>First Masters Appearance?</th>
+    <th>Previous Masters Champion?</th>
   </tr>
 
   <% @groups_available.each do |f| %>
@@ -37,11 +39,12 @@
           <td><%= golfer.name %></td>
           <td><%= golfer.country_name %></td>
           <td><%= golfer.status %></td>
+          <td><%= golfer.first_masters? ? 'Yes' : 'No'%></td>
+          <td><%= golfer.past_champion? ? 'Yes' : 'No' %></td>
         </tr> 
       <% end %>
     <% end %>
   <% end %>
-
 
 <% end %>
 </table>
