@@ -1,8 +1,53 @@
-<%= render 'shared/user_header'
+<%= render 'shared/user_header' %>
+
 <% if @user.pools.exists? %>
-<%= render 'selections_display' %>
-<br>
-<%= render 'shared/selections_form' %>
-<% else %>
-<%= render 'pool_form' %>
+	<% @pools = @user.pools.find(:all) %>
+	<table class="front">
+		<tr>
+			<td class="main">
+				<h1 class="selection">Pools:</h1>
+			</td>
+		</tr>
+	</table>
+	<table class="selections">
+		<tr>
+			<th>Pool Name</th>
+			<th>Pool Description</th>
+			<th>Team Name</th>
+			<th>Round 1</th>
+			<th>Round 2</th>
+			<th>Round 3</th>
+			<th>Round 4</th>
+			<th>Final Score</th>
+			  <% if correct_user?(@user) %>
+			    <th>Create/Edit Selection</th>
+			  <% end %>
+		</tr>
+		<% if correct_user?(@user) %>
+			<% if before_locktime?(@current_time) %>
+				<% @pools.each do |p| %>
+
+					<tr>
+						<td><%= p.name %></td>
+						<td><%= p.description %></td>
+						<td>Team Name</td>
+						<td>Round 1</td>
+						<td>Round 2</td>
+						<td>Round 3</td>
+						<td>Round 4</td>
+						<td>Final Score</td>
+						<% if @teams %>
+						<td><%= link_to "Edit", %></td>
+						<% else %>
+						<td><%= link_to "Create", new_team_path %></td>
+						<% end %>
+					</tr>
+					
+				<% end %>
+			<% end %>
+		<% end %>
+	</table>
 <% end %>
+
+
+

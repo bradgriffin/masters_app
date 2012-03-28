@@ -5,6 +5,7 @@ MastersApp::Application.routes.draw do
   resources :golfers, :only => [:new, :create, :show]
   resources :memberships, only: [:new, :create, :destroy]
   resources :pools
+  resources :teams
   resources :results do
     collection do
       post :edit_multiple
