@@ -8,8 +8,8 @@ gem 'rails', '3.2.1'
 gem 'pg'
 gem 'heroku'
 gem 'devise'
-gem 'will_paginate', '3.0.3'
-gem 'bootstrap-will_paginate', '0.0.5'
+gem 'devise_invitable', '~> 1.0.0'
+gem 'bcrypt-ruby', '>= 3.0.1'
 
 
 # Gems used only for assets and not required

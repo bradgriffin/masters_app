@@ -1,6 +1,12 @@
 MastersApp::Application.routes.draw do
   
-  devise_for :users 
+  get "teams/new"
+
+  get "memberships/new"
+
+  get "pools/new"
+
+  devise_for :users
   resources :users, :only => [:show, :edit]
   resources :golfers, :only => [:new, :create, :show]
   resources :results do
