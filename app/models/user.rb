@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
-	has_many :selections, :dependent => :destroy
-  has_many :golfers, :through => :selections, :source => :User
-  accepts_nested_attributes_for :selections
+  has_many :pools
+  has_many :memberships
+  has_many :teams
 		
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable

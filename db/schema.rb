@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120327023935) do
+ActiveRecord::Schema.define(:version => 20120328011911) do
 
   create_table "golfers", :force => true do |t|
     t.string  "name"
@@ -20,6 +20,22 @@ ActiveRecord::Schema.define(:version => 20120327023935) do
     t.string  "country_name"
     t.boolean "first_masters"
     t.boolean "past_champion"
+  end
+
+  create_table "memberships", :force => true do |t|
+    t.integer  "pool_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "pools", :force => true do |t|
+    t.string   "name"
+    t.string   "password_digest"
+    t.text     "description"
+    t.integer  "user_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "results", :force => true do |t|
@@ -34,8 +50,16 @@ ActiveRecord::Schema.define(:version => 20120327023935) do
     t.integer  "group_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "user_id"
     t.integer  "golfer_id"
+    t.integer  "team_id"
+  end
+
+  create_table "teams", :force => true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.integer  "pool_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

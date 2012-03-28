@@ -9,7 +9,9 @@ class UsersController < ApplicationController
     @current_time = Time.new
   	@user = User.find(params[:id])
   	@title = @user.name
-    @selections = @user.selections.find(:all, :order => "group_id asc")
+    @teams = @user.teams.find(:all)
+    @pool = Pool.new
+    # @selections = @user.selections.find(:all, :order => "group_id asc")
     @groups = (1..8).entries
     @groups_available = []
     @result_1 = 0
