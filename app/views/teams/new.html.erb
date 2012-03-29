@@ -1,5 +1,9 @@
 <h1>Create a New Team</h1>
 
+<% @memberships.each do |m| %>
+<% @pools_available << Pool.find(m.pool_id) %>
+<% end %>
+
 <%= form_tag teams_path, :method => :create do %>
   
   <div class="field">
@@ -9,7 +13,7 @@
 
   <div class="field">
     <%= label_tag :pool %><br />
-    <%= select_tag "teams[pool_id]", options_from_collection_for_select(@pools, "id", "name")%>
+    <%= select_tag "teams[pool_id]", options_from_collection_for_select(@pools_available, "id", "name")%>
   </div>
 
   <div class="actions">

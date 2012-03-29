@@ -1,8 +1,9 @@
 class PoolsController < ApplicationController
   def new
   	@title = "Create Pool"
-    @user = current_user.id
+    @user = current_user
     @pool = Pool.new
+    @linked_pool = Pool.find(params[:id])
   end
 
   def create
@@ -19,5 +20,9 @@ class PoolsController < ApplicationController
   end
 
   def show
+    @user = current_user
+  end
+
+  def destroy
   end
 end

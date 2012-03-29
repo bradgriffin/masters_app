@@ -1,9 +1,9 @@
 MastersApp::Application.routes.draw do
   
   devise_for :users
-  resources :users, :only => [:show, :edit]
+  resources :users, :only => [:show]
   resources :golfers, :only => [:new, :create, :show]
-  resources :memberships, only: [:new, :create, :destroy]
+  resources :memberships, :only => [:new, :create, :destroy]
   resources :pools
   resources :teams
   resources :results do
@@ -19,14 +19,13 @@ MastersApp::Application.routes.draw do
     end
   end
 
-
   root to: 'static_pages#home'
   match '/help', to: 'static_pages#help'
   match '/about', to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
   match '/standings', to: 'static_pages#standings'
   match '/rankings', to: 'static_pages#rankings'
-  match 'pools/signup',  to: 'pools#new'
+  match '/join', to: 'static_pages#pools'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

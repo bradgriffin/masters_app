@@ -36,4 +36,9 @@ class StaticPagesController < ApplicationController
     @totals = []
     @previous_total = []
   end
+
+  def pools
+    @user = current_user
+    @title = 'Pools'
+  end
 end

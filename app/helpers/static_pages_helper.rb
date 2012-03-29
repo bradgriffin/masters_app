@@ -1,9 +1,9 @@
 module StaticPagesHelper
 
-	def user_results(user)
-		@user = User.find_by_id(user)
-		@selections = @user.selections
-		user_selections(@selections)
+	def team_results(team)
+		@team = Team.find_by_id(team)
+		@selections = @team.selections
+		team_selections(@selections)
 		@total = [@results_1.sum,@results_2.sum,@results_3.sum,@results_4.sum]
 	end
 
@@ -22,7 +22,7 @@ module StaticPagesHelper
 		@total = [@results_1.sum,@results_2.sum,@results_3.sum,@results_4.sum]
 	end
 
-  	def user_selections(selections)
+  	def team_selections(selections)
   		for selection in selections 
 			@golfer = Golfer.find_by_id(selection.golfer_id)
 			if @golfer.result

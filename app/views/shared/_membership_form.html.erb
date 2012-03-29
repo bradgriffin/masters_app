@@ -1,10 +1,16 @@
 <% provide(:title, "Join a Pool") %>
-<h1>Join</h1>
+<h1>Join a Pool:</h1>
+<p>Please provide the following information to join an existing pool.</p>
 
     <%= form_for(:membership, :url => memberships_path) do |f| %>
     <div class="field">
       <%= f.label :name %><br />
-      <%= f.text_field :name %>
+      <% @linked_pool = Pool.find(params[:id]) %>
+      <% if @linked_pool == nil %>
+        <%= f.text_field :test %>
+       <% else %>
+        <%= f.text_field :name, :value => @linked_pool.name %>
+      <% end %>
     </div>
 
     <div class="field">
@@ -15,7 +21,7 @@
     <div class="field">
       <%= f.submit "Join", :class => "btn btn-large btn-primary" %>
     </div>
-    <% end %>
+    <% end %><br />
 
     <p>Want to create your own pool? <%= link_to "Create pool now!", new_pool_path %></p>
   </div>

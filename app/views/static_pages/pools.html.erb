@@ -1,0 +1,26 @@
+<%= render 'shared/user_header.html.erb' %>
+
+<table class="front">
+	<tr>
+		<td class="main">
+			<h1 class="selection">Select a pool to join:</h1>
+		</td>
+	</tr>
+</table>
+
+<table class="selections">
+	<tr>
+		<th>Pool Name</th>
+		<th>Pool Description</th>
+		<th>Number of Members</th>
+		<th>Owner</th>
+	</tr>
+  	<tr>
+  		<% @pools.each do |p| %>
+  		<td><%= link_to p.name, "/pools/#{p.id}" %></td>
+  		<td><%= p.description %></td>
+  		<td>Member count</td>
+  		<td><%= p.user_id %></td>
+  		<% end %>
+  	</tr>
+  </table>

@@ -1,24 +1,2 @@
-<%= render 'shared/user_header' %>
-
-<% provide(:title, "Join a Pool") %>
-<h1>Join</h1>
-
-    <%= form_for(:membership, :url => memberships_path) do |f| %>
-    <div class="field">
-      <%= f.label :name %><br />
-      <%= f.text_field :name %>
-    </div>
-
-    <div class="field">
-      <%= f.label :password %><br />
-      <%= f.password_field :password %>
-    </div>
-
-    <div class="field">
-      <%= f.submit "Join", :class => "btn btn-large btn-primary" %>
-    </div>
-    <% end %>
-
-    <p>Want to create your own pool? <%= link_to "Create pool now!", new_pool_path %></p>
-  </div>
-</div>
+<%= render 'shared/user_header' %><br />
+<%= render 'shared/membership_form.html.erb' %>

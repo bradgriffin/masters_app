@@ -1,12 +1,13 @@
 <h1>User Rankings</h1>
 <p>
-	Where do you stack up against the world?
+	Where does your team stack up against the world?
 </p>
 	
 <table class="selections">
   <tr>
     <th>Rank</th>
     <th>User</th>
+    <th>Team</th>
     <th>Round 1 Total</th>
     <th>Round 2 Total</th>
     <th>Round 3 Total</th>
@@ -14,19 +15,19 @@
     <th>Total</th>
   </tr>
 
-  	<% for user in @users %>
-      <% user_results(user) %>
-      <% @totals << {"user"=>user.id, "total"=>@total.sum} %>
+  	<% for team in @teams %>
+      <% team_results(team) %>
+      <% @totals << {"team"=>team.id, "total"=>@total.sum} %>
       <% @sorted_totals = @totals.sort! { |x, y| x["total"] <=> y["total"] } %>
-      <% @sorted_users = [] %>
-      <% @sorted_totals.each do |u| %>
-        <% @sorted_users << u["user"] %>
+      <% @sorted_teams = [] %>
+      <% @sorted_totals.each do |t| %>
+        <% @sorted_teams << t["team"] %>
       <% end %>
       <%  reset_vars() %>
       <% end %>
 
-    <% for user in @sorted_users %>
-      <% user_results(user) %>
+    <% for team in @sorted_teams %>
+      <% team_results(team) %>
 	  	<tr>
         <% if @total.sum == @previous_total.sum %>
           <td>T<%= @rank %></td>
@@ -34,7 +35,9 @@
           <% @rank = @rank + 1 %>
           <td><%= @rank %></td>
         <% end %>
-		   	<td><%=link_to @user.name, @user %></td>
+        <% @user = User.find(@team.user_id) %>
+        <td><%= link_to @user.name, @user %></td>
+		   	<td><%=link_to @team.name, @team %></td>
 		   	<td><%= @results_1.sum %></td>
 		   	<td><%= @results_2.sum %></td>
 		   	<td><%= @results_3.sum %></td>

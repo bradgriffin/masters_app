@@ -5,7 +5,7 @@
     </td>
   </tr>
 </table>
-<% @current_selection = current_user.selections.find(params[:id]) %>
+<% @current_selection = @team.selections.find(params[:id]) %>
 <% @group = Golfer.where(:group_id => @current_selection.group_id) %>
 <table class="available">
   <tr>
@@ -31,5 +31,5 @@
 </table>
 
 <br>
-<%= link_to "Back", current_user %>
+<%= link_to "Back", @team %>
 </br>

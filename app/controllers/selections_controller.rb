@@ -1,6 +1,5 @@
 class SelectionsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :correct_user,   only: [:destroy, :edit]
 
   def index
   end
@@ -17,16 +16,17 @@ class SelectionsController < ApplicationController
 
   def create
     @golfer_selection = params[:golfer_id]
+    @team = Team.find(params[:team_id])
     @hash = {"golfer_id" => @golfer_selection, "group_id" => Golfer.find(@golfer_selection).group_id}
-    @selection = current_user.selections.build(@hash)
+    @selection = @team.selections.build(@hash)
     @selection.save
 
     if @selection.save
       flash[:success] = "Selection made!"
-      redirect_to current_user
+      redirect_to @team
     else
       flash[:error] = "Try again"
-      redirect_to current_user
+      redirect_to @team
     end
   end
 
@@ -34,23 +34,25 @@ class SelectionsController < ApplicationController
   end
 
   def destroy
-    @selection = current_user.selections.find_by_id(params[:id])
+    @selection = @team.selections.find_by_id(params[:id])
     @selection.destroy
     flash[:notice] = "Removed selection!"
-    redirect_to current_user
+    redirect_to @team
   end
 
   def edit
     @user = current_user
-    @selection = current_user.selections.find(:all)
+    @selection = Selection.find(params[:id])
+    @team = Team.find(@selection.team_id)
   end
 
   def update
-    @selection = current_user.selections.find(params[:selections][:selection_id])
+    @selection = Selection.find(params[:selections][:selection_id])
+    @team = Team.find(@selection.team_id)
     @selection.update_attributes("golfer_id" => params[:selections][:golfer_id])
 
     flash[:notice] = "Updated selection!"
-    redirect_to current_user
+    redirect_to @team
   end
 
   def edit_multiple
@@ -76,8 +78,4 @@ class SelectionsController < ApplicationController
 
   private
 
-    def correct_user
-      @selection = current_user.selections.find_by_id(params[:id])
-      redirect_to root_path if @selection.nil?
-    end
 end
