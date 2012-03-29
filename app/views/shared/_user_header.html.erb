@@ -9,8 +9,18 @@
     </td>
     <td class="sidebar round">
       <strong>Name</strong> <%= @user.name %><br />
-      <strong>URL</strong>  <%= link_to user_path(@user), @user %><br />
-      <strong>Pools</strong>  <%= @user.pools.name %>
+      <strong>URL</strong>  <%= link_to user_path(@user), @user %><br /><br />
+      <strong>Teams:</strong><br />
+      <% if @user.memberships.exists? %>
+        <% @memberships = @user.memberships.find(:all) %>
+        <% @memberships.each do |m| %>
+          <% @pool = Pool.find(m.pool_id) %>
+          <% if @user.teams.exists? %>
+            <% @team = @user.teams.find_by_pool_id(m.pool_id) %>
+            <strong><%= @pool.name %></strong> <%= link_to @team.name, team_path(@team) %><br />
+          <% end %>
+        <% end %>
+      <% end %>
     </td>
   </tr>
 </table>

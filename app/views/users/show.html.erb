@@ -27,12 +27,6 @@
 			<th>Round 3</th>
 			<th>Round 4</th>
 			<th>Final Score</th>
-
-				<!-- Only the signed in user should be able to edit his or her own teams --> 
-				<% if correct_user?(@user) %>
-					<th>Create/Edit Selection</th>
-				<% end %>
-
 		</tr>
 
 		<!-- Check to see if correct user for editing memberships and teams. -->
@@ -49,27 +43,26 @@
 						<% @team = @user.teams.find_by_pool_id(m.pool_id) %>
 						<% @selection = @team.selections %>
 							<tr>
-								<td><%= @pool.name %></td>
+								<td><%= link_to @pool.name, pool_path(@pool) %></td>
 								<td><%= @pool.description %></td>
-								<td><%= @team.name %></td>
-								<td>Round 1</td>
-								<td>Round 2</td>
-								<td>Round 3</td>
-								<td>Round 4</td>
-								<td>Final Score</td>
-								<td><%= link_to "Edit", "/teams/#{@team.id}" %></td>
+								<td><%= link_to @team.name, team_path(@team) %></td>
+								<% team_results(@team) %>
+								<td><%= @results_1.sum %></td>
+							   	<td><%= @results_2.sum %></td>
+							   	<td><%= @results_3.sum %></td>
+							   	<td><%= @results_4.sum %></td>
+							   	<td><%= @total.sum %></td>
 							</tr>
 					<% else %> <!-- The user does not have any teams! Should link to create a team. -->
 							<tr>
 								<td><%= @pool.name %></td>
 								<td><%= @pool.description %></td>
-								<td>-</td>
-								<td>-</td>
-								<td>-</td>
-								<td>-</td>
-								<td>-</td>
-								<td>-</td>
 								<td><%= link_to "Create your team", new_team_path %></td>
+								<td>-</td>
+								<td>-</td>
+								<td>-</td>
+								<td>-</td>
+								<td>-</td>
 							</tr>
 					<% end %>
 				<% end %>

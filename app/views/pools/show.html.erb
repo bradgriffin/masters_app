@@ -1,3 +1,7 @@
 <%= render 'shared/user_header.html.erb' %><br />
-
+<% @pool = Pool.find(params[:id]) %>
+<% if @pool == nil %>
 <%= render 'shared/membership_form.html.erb' %>
+<% else %>
+	Open to show current pool members.
+<% end %>

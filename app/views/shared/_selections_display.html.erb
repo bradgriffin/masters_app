@@ -1,10 +1,21 @@
+<table>
+  <tr>
+    <% @pool = Pool.find(@team.pool_id) %>
+    <td><strong>Pool:</strong></td>
+    <td><%= @pool.name %></td>
+  </tr>
+  <tr>
+    <td><strong>Team Name:</strong></td>
+    <td><%= @team.name %></td>
+  </tr>
+</table>
 <table class="front">
-    <tr>
-      <td class="main">
-        <h1 class="selection">Selections:</h1>
-      </td>
-    </tr>
-  </table>
+  <tr>
+    <td class="main">
+      <h1 class="selection">Selections:</h1>
+    </td>
+  </tr>
+</table>
 <table class="selections">
   <tr>
     <th>Group</th>

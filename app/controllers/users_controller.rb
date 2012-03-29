@@ -20,6 +20,10 @@ class UsersController < ApplicationController
     @result_4 = 0
     @total = []
     @totals = []
+    @results_1 = []
+    @results_2 = []
+    @results_3 = []
+    @results_4 = []
   end
 
   def create

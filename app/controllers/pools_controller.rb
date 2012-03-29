@@ -3,7 +3,6 @@ class PoolsController < ApplicationController
   	@title = "Create Pool"
     @user = current_user
     @pool = Pool.new
-    @linked_pool = Pool.find(params[:id])
   end
 
   def create

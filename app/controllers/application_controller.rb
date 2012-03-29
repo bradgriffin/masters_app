@@ -4,6 +4,8 @@ before_filter :set_golfers
 before_filter :set_teams
 before_filter :set_pools
 
+helper :all # include all helpers, all the time in the views
+
 	def set_users
 		@users = User.all
 	end

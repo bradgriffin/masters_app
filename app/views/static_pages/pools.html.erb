@@ -17,7 +17,7 @@
 	</tr>
   	<tr>
   		<% @pools.each do |p| %>
-  		<td><%= link_to p.name, "/pools/#{p.id}" %></td>
+  		<td><%= link_to p.name, pool_path(p) %></td>
   		<td><%= p.description %></td>
   		<td>Member count</td>
   		<td><%= p.user_id %></td>
