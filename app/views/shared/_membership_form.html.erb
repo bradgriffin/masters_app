@@ -5,7 +5,9 @@
     <%= form_for(:membership, :url => memberships_path) do |f| %>
     <div class="field">
       <%= f.label :name %><br />
-      <% @linked_pool = Pool.find(params[:id]) %>
+        <% unless controller.controller_name == "users" %>
+          <% @linked_pool = Pool.find(params[:id]) %>
+          <% end%>
       <% if @linked_pool == nil %>
         <%= f.text_field :test %>
        <% else %>

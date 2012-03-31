@@ -23,6 +23,7 @@ class PoolsController < ApplicationController
   def show
     @user = current_user
     @current_pool = Pool.find(params[:id])
+    @current_memberships = current_user.memberships.find_all_by_pool_id(params[:id])
     @members = Membership.find_all_by_pool_id(@current_pool.id)
     @groups = (1..8).entries
     @groups_available = []
