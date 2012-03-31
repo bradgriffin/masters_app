@@ -31,7 +31,7 @@
 				<% @position = @position + 1 %>
 				<td><%= @position %></td>
 			<% end %>
-		   	<td><%=link_to @golfer.name, @golfer %></td>
+		   	<td><%= @golfer.name %></td>
 		   	<td><%= @golfer.country_name %></td>
 		   	<td><%= round_score_to_par(@results_1.sum)%></td>
 		   	<td><%= round_score_to_par(@results_2.sum) %></td>
