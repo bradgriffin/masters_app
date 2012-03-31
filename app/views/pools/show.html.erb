@@ -16,8 +16,7 @@
     <th>Total</th>
   </tr>
 
-  	<% for member in @members %>
-  		<% @teams = @current_pool.teams.find_all_by_user_id(member.user_id) %>
+  		<% @teams = Team.find_all_by_pool_id(@current_pool.id) %>
   		<% for team in [*@teams] %>
   			<% team_results(team) %>
 		    <% @totals << {"team"=>team.id, "total"=>@total.sum} %>
@@ -28,7 +27,6 @@
 	    	<% end %>
 	      	<%  reset_vars() %>
 	    <% end %>
-	<% end %>
 
     <% for team in @sorted_teams %>
       <% team_results(team) %>
