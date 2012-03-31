@@ -39,20 +39,23 @@
 				<!-- This code will probably repeat. Candidate for refactoring -->
 				<% @memberships.each do |m| %>
 					<% @pool = Pool.find(m.pool_id) %>
-					<% if @user.teams.exists? %>
-						<% @team = @user.teams.find_by_pool_id(m.pool_id) %>
-						<% @selection = @team.selections %>
-							<tr>
-								<td><%= link_to @pool.name, pool_path(@pool) %></td>
-								<td><%= @pool.description %></td>
-								<td><%= link_to @team.name, team_path(@team) %></td>
-								<% team_results(@team) %>
-								<td><%= @results_1.sum %></td>
-							   	<td><%= @results_2.sum %></td>
-							   	<td><%= @results_3.sum %></td>
-							   	<td><%= @results_4.sum %></td>
-							   	<td><%= @total.sum %></td>
-							</tr>
+					<% @teams = @user.teams.find_by_pool_id(m.pool_id) %>
+					<% if !@teams.nil? %>
+						<% for team in [*@teams] %>
+							<% @selection = team.selections %>
+								<tr>
+									<td><%= link_to @pool.name, pool_path(@pool) %></td>
+									<td><%= @pool.description %></td>
+									<td><%= link_to team.name, team_path(team) %></td>
+									<% team_results(team) %>
+									<td><%= @results_1.sum %></td>
+								   	<td><%= @results_2.sum %></td>
+								   	<td><%= @results_3.sum %></td>
+								   	<td><%= @results_4.sum %></td>
+								   	<td><%= @total.sum %></td>
+								</tr>
+							<%  reset_vars() %>
+						<% end %>
 					<% else %> <!-- The user does not have any teams! Should link to create a team. -->
 							<tr>
 								<td><%= @pool.name %></td>

@@ -1,7 +1,56 @@
 <%= render 'shared/user_header.html.erb' %><br />
-<% @pool = Pool.find(params[:id]) %>
-<% if @pool == nil %>
+<% if @current_pool == nil %>
 <%= render 'shared/membership_form.html.erb' %>
 <% else %>
-	Open to show current pool members.
+<h1><%= @current_pool.name %> Rankings</h1>
+	
+<table class="selections">
+  <tr>
+    <th>Rank</th>
+    <th>User</th>
+    <th>Team</th>
+    <th>Round 1 Total</th>
+    <th>Round 2 Total</th>
+    <th>Round 3 Total</th>
+    <th>Round 4 Total</th>
+    <th>Total</th>
+  </tr>
+
+  	<% for member in @members %>
+  		<% @teams = @current_pool.teams.find_all_by_user_id(member.user_id) %>
+  		<% for team in [*@teams] %>
+  			<% team_results(team) %>
+		    <% @totals << {"team"=>team.id, "total"=>@total.sum} %>
+		    <% @sorted_totals = @totals.sort! { |x, y| x["total"] <=> y["total"] } %>
+		    <% @sorted_teams = [] %>
+		    <% @sorted_totals.each do |t| %>
+		        <% @sorted_teams << t["team"] %>
+	    	<% end %>
+	      	<%  reset_vars() %>
+	    <% end %>
+	<% end %>
+
+    <% for team in @sorted_teams %>
+      <% team_results(team) %>
+	  	<tr>
+        <% if @total.sum == @previous_total.sum %>
+          <td>T<%= @rank %></td>
+        <% else %>
+          <% @rank = @rank + 1 %>
+          <td><%= @rank %></td>
+        <% end %>
+        <% @user = User.find(@team.user_id) %>
+        <td><%= link_to @user.name, @user %></td>
+		   	<td><%=link_to @team.name, @team %></td>
+		   	<td><%= @results_1.sum %></td>
+		   	<td><%= @results_2.sum %></td>
+		   	<td><%= @results_3.sum %></td>
+		   	<td><%= @results_4.sum %></td>
+		   	<td><%= @total.sum %></td>
+	   	</tr>
+      <% @previous_total = [] %>
+      <% @previous_total = [@results_1.sum,@results_2.sum,@results_3.sum,@results_4.sum] %>
+      <% reset_vars() %>
+	<% end %>
+</table>
 <% end %>

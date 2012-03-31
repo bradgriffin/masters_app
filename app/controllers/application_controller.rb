@@ -3,6 +3,7 @@ before_filter :set_users
 before_filter :set_golfers
 before_filter :set_teams
 before_filter :set_pools
+include PoolsHelper
 
 helper :all # include all helpers, all the time in the views
 

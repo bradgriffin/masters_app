@@ -102,6 +102,32 @@ a:hover {
     color: #BBBBBB;
 }
 
+  #header li ul
+    { margin-top: 10px;
+      margin-left: 60px;
+      margin-right: auto;
+      padding: 2px;
+      position: absolute;
+      visibility: hidden;
+      background: $banner-color;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #E5E5E5;
+       }
+    
+    #header li ul li
+    { float: none;
+      display: inline;
+      background: $banner-color;}
+    
+    #header li ul li a
+    {
+      width: auto;
+      color: #000000;
+      font-size: 125%;
+    }
+
+
+
 a.signup_button {
   margin-left: auto;
   margin-right: auto;

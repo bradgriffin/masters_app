@@ -2,7 +2,7 @@ class TeamsController < ApplicationController
 
   def new
   	@title = "Select Team"
-    @user = current_user.id
+    @user = current_user
     @team = Team.new
     @memberships = current_user.memberships.find(:all)
     @pools_available = []
@@ -14,7 +14,7 @@ class TeamsController < ApplicationController
 
     if @team.save
       flash[:success] = "Team created!"
-      redirect_to current_user
+      redirect_to team_path(@team)
     else
       flash[:error] = "Try again"
       redirect_to current_user

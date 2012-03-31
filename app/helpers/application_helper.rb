@@ -24,6 +24,7 @@ module ApplicationHelper
       @result_2 = 0
       @result_3 = 0
       @result_4 = 0
+      @teams = nil
     end
 
     def before_locktime?(time)
