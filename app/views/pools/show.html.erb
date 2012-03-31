@@ -1,5 +1,5 @@
 <%= render 'shared/user_header.html.erb' %><br />
-<% if @current_pool == nil %>
+<% if @current_memberships == nil %>
 <%= render 'shared/membership_form.html.erb' %>
 <% else %>
 <h1><%= @current_pool.name %> Rankings</h1>
@@ -28,7 +28,7 @@
 	      	<%  reset_vars() %>
 	    <% end %>
 
-    <% for team in @sorted_teams %>
+    <% for team in [*@sorted_teams] %>
       <% team_results(team) %>
 	  	<tr>
         <% if @total.sum == @previous_total.sum %>

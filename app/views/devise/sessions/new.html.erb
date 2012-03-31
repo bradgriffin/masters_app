@@ -1,4 +1,6 @@
 <% provide :title, 'Sign in' %>
+<table class="signin">
+<tr><td>
 <h1>Sign in</h1>
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
@@ -9,10 +11,12 @@
   <%= f.password_field :password %></div>
 
   <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %><br /></div>
   <% end -%>
 
   <div><%= f.submit "Sign in" %></div>
 <% end %>
 
 <%= render "links" %>
+</td></tr>
+</table>
